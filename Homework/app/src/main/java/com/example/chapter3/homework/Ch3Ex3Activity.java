@@ -1,7 +1,12 @@
 package com.example.chapter3.homework;
 
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.FrameLayout;
 
 /**
  * 使用 ViewPager 和 Fragment 做一个简单版的好友列表界面
@@ -11,17 +16,26 @@ import android.os.Bundle;
  */
 public class Ch3Ex3Activity extends AppCompatActivity {
 
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ch3ex3);
 
-
-
         // TODO: ex3-1. 添加 ViewPager 和 Fragment 做可滑动界面
-
-
-
+        viewPager = findViewById(R.id.view_paper);
+        tabLayout=findViewById(R.id.tab_layout);
         // TODO: ex3-2, 添加 TabLayout 支持 Tab
+        FriendsPagerAdapter adapter= new FriendsPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+
+//        // 动态加载ListView布局
+//        FrameLayout listViewContainer = findViewById(R.id.listViewContainer);
+//        View listViewLayout = LayoutInflater.from(this).inflate(R.layout.fragment_placeholder, listViewContainer, false);
+//        listViewContainer.addView(listViewLayout);
+
     }
 }
